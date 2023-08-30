@@ -1,24 +1,6 @@
-# RPG GAME
-First steps in developing RPG game to learn C++
+# Enigma Machine Simulator in C++
+## Overview
+This is a C++ implementation of the Enigma machine, a cipher device used for the encryption and decryption of secret messages. The Enigma machine was most famously used by Germany during World War II.
 
-First i have installed CMake and SFML lib and GTest
-sudo apt-get install libsfml-dev
-
-```shell
-git submodule add git@github.com:google/googletest.git
-git submodule init
-git submodule update
-```
-
-To build project go into build dir and execute make command
-
-```shell
-cmake ..
-make
-```
-
-To clean build dir use 
-
-make clean
-
-To run project power up its executable, same concernig tests
+## Brief History of the Enigma Machine
+The Enigma machine was invented by the German engineer Arthur Scherbius at the end of World War I. Initially designed for commercial use, it was adopted by the military and government of several countries. The machine's settings offered 150 million possible combinations, making it an incredibly secure method of communication at the time. However, it was eventually broken by Polish and British cryptanalysts, with Alan Turing playing a significant role in the decryption efforts. The breaking of the Enigma code was a turning point in World War II and is considered one of the earliest successes of computer science.
