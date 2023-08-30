@@ -1,63 +1,87 @@
-#include <SFML/Graphics.hpp>
-#include <simple_lib.hpp>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
 
-int main()
-{
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Pong");
+using namespace std;
 
-    // Ball
-    sf::CircleShape ball(15);
-    ball.setFillColor(sf::Color::White);
-    ball.setPosition(window.getSize().x / 2, window.getSize().y / 2);
-    sf::Vector2f ballVelocity(0.5f, 0.5f);
+// Simple rotor
+class Rotor {
+public:
+    Rotor(string mapping) : mapping(mapping), position(0) {}
 
-    // Paddles
-    sf::RectangleShape leftPaddle(sf::Vector2f(20, 100));
-    leftPaddle.setFillColor(sf::Color::White);
-    leftPaddle.setPosition(30, window.getSize().y / 2 - leftPaddle.getSize().y / 2);
-
-    sf::RectangleShape rightPaddle(sf::Vector2f(20, 100));
-    rightPaddle.setFillColor(sf::Color::White);
-    rightPaddle.setPosition(window.getSize().x - 50, window.getSize().y / 2 - rightPaddle.getSize().y / 2);
-
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        // Ball movement and collision
-        ball.move(ballVelocity.x, ballVelocity.y);
-
-        if (ball.getPosition().y <= 0 || ball.getPosition().y + ball.getRadius() * 2 >= window.getSize().y)
-            ballVelocity.y = -ballVelocity.y;
-
-        if ((ball.getGlobalBounds().intersects(leftPaddle.getGlobalBounds())) || 
-            (ball.getGlobalBounds().intersects(rightPaddle.getGlobalBounds())))
-            ballVelocity.x = -ballVelocity.x;
-
-        // Paddle movement
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && leftPaddle.getPosition().y > 0)
-            leftPaddle.move(0, -1.0f);
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && leftPaddle.getPosition().y + leftPaddle.getSize().y < window.getSize().y)
-            leftPaddle.move(0, 1.0f);
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && rightPaddle.getPosition().y > 0)
-            rightPaddle.move(0, -1.0f);
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && rightPaddle.getPosition().y + rightPaddle.getSize().y < window.getSize().y)
-            rightPaddle.move(0, 1.0f);
-
-        window.clear();
-        window.draw(ball);
-        window.draw(leftPaddle);
-        window.draw(rightPaddle);
-        window.display();
+    void setPosition(int pos) {
+        position = pos % 26;
     }
+    void rotate() {
+        position = (position + 1) % 26;
+    }
+    char map(char in) {
+        int inPos = (in - 'A' + position) % 26;
+        char mapped = mapping[inPos];
+        return (mapped - position - 'A' + 26) % 26 + 'A';
+    }
+
+private:
+    string mapping;
+    int position;
+};
+
+// Simple reflector
+class Reflector {
+public:
+    Reflector(string mapping) : mapping(mapping) {}
+
+    char reflect(char in) {
+        int inPos = in - 'A';
+        return mapping[inPos];
+    }
+
+private:
+    string mapping;
+};
+
+// Enigma machine with one rotor and one reflector
+class Enigma {
+public:
+    Enigma(Rotor rotor, Reflector reflector) : rotor(rotor), reflector(reflector) {}
+
+    char encrypt(char in) {
+        char r = rotor.map(in);
+        char ref = reflector.reflect(r);
+        char out = rotor.map(ref);
+        rotor.rotate();
+        return out;
+    }
+
+private:
+    Rotor rotor;
+    Reflector reflector;
+};
+
+int main() {
+    // Initialize rotor and reflector
+    Rotor rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ");
+    rotor.setPosition(0);
+    Reflector reflector("YRUHQSLDPXNGOKMIEBFZCWVJAT");
+
+    // Initialize Enigma machine
+    Enigma enigma(rotor, reflector);
+
+    // Get plaintext
+    cout << "Enter plaintext: ";
+    string plaintext;
+    cin >> plaintext;
+
+    // Encrypt
+    string ciphertext;
+    for (char c : plaintext) {
+        ciphertext += enigma.encrypt(c);
+        
+    }
+
+    // Output ciphertext
+    cout << "Ciphertext: " << ciphertext << endl;
 
     return 0;
 }
