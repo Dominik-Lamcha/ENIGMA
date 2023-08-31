@@ -16,7 +16,7 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 add_library(MyLibrary src/simple_lib.cpp)
 
 
-add_executable(ENIGMA src/main.cpp src/Rotor.cpp)
+add_executable(ENIGMA src/main.cpp src/Rotor.cpp src/Reflector.cpp)
 
 target_link_libraries(ENIGMA sfml-graphics sfml-audio)
 

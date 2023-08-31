@@ -3,25 +3,13 @@
 #include <vector>
 #include <algorithm>
 #include "Rotor.hpp" 
+#include "Reflector.hpp"
 
 using namespace std;
 
 
 
 // Simple reflector
-class Reflector {
-public:
-    Reflector(string mapping) : mapping(mapping) {}
-
-    char reflect(char in) {
-        int inPos = in - 'A';
-        return mapping[inPos];
-    }
-
-private:
-    string mapping;
-};
-
 // Enigma machine with one rotor and one reflector
 class Enigma {
 public:
