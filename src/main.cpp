@@ -2,30 +2,11 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include "Rotor.hpp" 
 
 using namespace std;
 
-// Simple rotor
-class Rotor {
-public:
-    Rotor(string mapping) : mapping(mapping), position(0) {}
 
-    void setPosition(int pos) {
-        position = pos % 26;
-    }
-    void rotate() {
-        position = (position + 1) % 26;
-    }
-    char map(char in) {
-        int inPos = (in - 'A' + position) % 26;
-        char mapped = mapping[inPos];
-        return (mapped - position - 'A' + 26) % 26 + 'A';
-    }
-
-private:
-    string mapping;
-    int position;
-};
 
 // Simple reflector
 class Reflector {
