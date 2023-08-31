@@ -1,32 +1,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
-#include "Rotor.hpp" 
-#include "Reflector.hpp"
+#include <algorithm> 
+#include "Enigma.hpp"
 
 using namespace std;
-
-
-
-// Simple reflector
-// Enigma machine with one rotor and one reflector
-class Enigma {
-public:
-    Enigma(Rotor rotor, Reflector reflector) : rotor(rotor), reflector(reflector) {}
-
-    char encrypt(char in) {
-        char r = rotor.map(in);
-        char ref = reflector.reflect(r);
-        char out = rotor.map(ref);
-        rotor.rotate();
-        return out;
-    }
-
-private:
-    Rotor rotor;
-    Reflector reflector;
-};
 
 int main() {
     // Initialize rotor and reflector
