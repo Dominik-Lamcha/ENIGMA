@@ -1,13 +1,17 @@
-#pragma once
+#ifndef REFLECTOR_HPP
+#define REFLECTOR_HPP
 
+#include <unordered_map>
 #include <string>
+#include <stdexcept>
 
 class Reflector {
-public:
-    Reflector(std::string mapping);
-    char reflect(char in);
-
-
 private:
-    std::string mapping;
+    std::unordered_map<char, char> mappings;
+
+public:
+    Reflector(const std::string& settings);
+    char reflect(char input) const;
 };
+
+#endif // REFLECTOR_HPP
