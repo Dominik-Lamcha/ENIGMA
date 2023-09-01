@@ -7,9 +7,13 @@ The Enigma machine was invented by the German engineer Arthur Scherbius at the e
 
 ## Original Enigma rotor settings
 
-| Tables   |      Are      |  Cool |
-|----------|:-------------:|------:|
-| col 1 is |  left-aligned | $1600 |
-| col 2 is |    centered   |   $12 |
-| col 3 is | right-aligned |    $1 |
-    
+| Rotor #  | ABCDEFGHIJKLMNOPQRSTUVWXYZ |  Date Introduced |
+|:--------:|:--------------------------:|------------------|
+| I        | EKMFLGDQVZNTOWYHXUSPAIBRCJ | 1930             |
+| II       | AJDKSIRUXBLHWTMCQGZNPYFVOE | 1930             |
+| III      | BDFHJLCPRTXVZNYEIWGAKMUSQO | 1930             |
+| IV       | ESOVPZJAYQUIRHXLNFTGKDCMWB | December 1938    |
+| V        | VZBRGITYUPSDNHLXAWMJQOFECK | December 1938    |
+| VI       | JPGVOUMFYQBENHZRDKASXLICTW | 1939             |
+| VII      | NZJHGRCXMYSWBOUFAIVLPEKQDT | 1939             |
+| VIII     | FKQHTLXOCBJSPDZRAMEWNIUYGV | 1939             |
