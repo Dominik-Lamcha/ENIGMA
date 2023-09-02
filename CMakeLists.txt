@@ -24,6 +24,9 @@ target_link_libraries(ENIGMA sfml-graphics sfml-audio)
 # Add the tests
 add_executable(runSimpleLibTest test/test_simple_lib.cpp src/simple_lib.cpp)
 target_link_libraries(runSimpleLibTest gtest gtest_main)
-#Reflector test
+# Reflector test
 add_executable(runReflectorTest test/test_Reflector.cpp src/Reflector.cpp)
 target_link_libraries(runReflectorTest gtest gtest_main)
+# Rotor test
+add_executable(runRotorTest test/test_Rotor.cpp src/Rotor.cpp)
+target_link_libraries(runRotorTest gtest gtest_main)
