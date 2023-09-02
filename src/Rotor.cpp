@@ -1,5 +1,6 @@
 #include "Rotor.hpp"
 
+//Legacy constructor
 Rotor::Rotor(const std::string& settings) : offset(0) {
     if (settings.length() != 26) {
         throw std::runtime_error("Invalid settings length. Should be 26 characters.");
@@ -26,6 +27,7 @@ Rotor::Rotor(const std::string& settings, char first_notch) : offset(0) {
     }
     this->first_notch = first_notch;
     this->second_notch = first_notch;
+    this->settings = settings;
 }
 
 Rotor::Rotor(const std::string& settings, char first_notch, char second_notch) : offset(0) {
@@ -41,6 +43,7 @@ Rotor::Rotor(const std::string& settings, char first_notch, char second_notch) :
     }
     this->first_notch = first_notch;
     this->second_notch = second_notch;
+    this->settings = settings;
 }
 
 Rotor::Rotor(int rotorNumber) {
@@ -109,5 +112,8 @@ char Rotor::reverse(char input) const {
 
 void Rotor::rotate() {
     setOffset(offset+1);
+}
 
+bool Rotor::atNotch() {
+    return settings[offset] == first_notch || settings[offset] == second_notch;
 }

@@ -14,6 +14,7 @@ private:
     void setByNumber(int rotorNumber);
     char first_notch;
     char second_notch;
+    std::string settings;
 
 public:
     Rotor(const std::string& settings);
