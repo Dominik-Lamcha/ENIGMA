@@ -2,18 +2,19 @@
 #include <string>
 #include <vector>
 #include <algorithm> 
+#include <cctype> 
 #include "Enigma.hpp"
 
 using namespace std;
 
 int main() {
     // Initialize rotor and reflector
-    Rotor rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ");
-    rotor.setOffset(0);
-    Reflector reflector("YRUHQSLDPXNGOKMIEBFZCWVJAT");
+    Rotor rotor1(2);
+    rotor1.setOffset(0);
+    Reflector reflector("EJMZALYXVBWFCRQUONTSPIKHGD");
 
     // Initialize Enigma machine
-    Enigma enigma(rotor, reflector);
+    Enigma enigma(rotor1, reflector);
 
     // Get plaintext
     cout << "Enter plaintext: ";
@@ -23,6 +24,7 @@ int main() {
     // Encrypt
     string ciphertext;
     for (char c : plaintext) {
+        c = toupper(c);
         ciphertext += enigma.encrypt(c);
         
     }
