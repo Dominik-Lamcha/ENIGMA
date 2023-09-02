@@ -23,10 +23,13 @@ void Rotor::setByNumber(int rotorNumber) {
         "AJDKSIRUXBLHWTMCQGZNPYFVOE",  // II
         "BDFHJLCPRTXVZNYEIWGAKMUSQO",  // III
         "ESOVPZJAYQUIRHXLNFTGKDCMWB",  // IV
-        "VZBRGITYUPSDNHLXAWMJQOFECK"   // V
+        "VZBRGITYUPSDNHLXAWMJQOFECK",  // V
+        "JPGVOUMFYQBENHZRDKASXLICTW",  // VI
+        "NZJHGRCXMYSWBOUFAIVLPEKQDT",  // VII
+        "FKQHTLXOCBJSPDZRAMEWNIUYGV"   // VIII
     };
 
-    if (rotorNumber < 1 || rotorNumber > 5) {
+    if (rotorNumber < 1 || rotorNumber > 8) {
         throw std::invalid_argument("Invalid rotor number. Must be between 1 and 5.");
     }
 
