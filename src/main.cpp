@@ -9,7 +9,7 @@ using namespace std;
 int main() {
     // Initialize rotor and reflector
     Rotor rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ");
-    rotor.setPosition(0);
+    rotor.setOffset(0);
     Reflector reflector("YRUHQSLDPXNGOKMIEBFZCWVJAT");
 
     // Initialize Enigma machine
