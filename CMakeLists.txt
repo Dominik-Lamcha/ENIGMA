@@ -30,3 +30,6 @@ target_link_libraries(runReflectorTest gtest gtest_main)
 # Rotor test
 add_executable(runRotorTest test/test_Rotor.cpp src/Rotor.cpp)
 target_link_libraries(runRotorTest gtest gtest_main)
+# Enigma test
+add_executable(runEnigmaTest test/test_Enigma.cpp src/Enigma.cpp src/Rotor.cpp src/Reflector)
+target_link_libraries(runEnigmaTest gtest gtest_main)
