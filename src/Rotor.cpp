@@ -1,23 +1,36 @@
 #include "Rotor.hpp"
 
+Rotor::Rotor(const std::string& settings) : offset(0) {
+    if (settings.length() != 26) {
+        throw std::runtime_error("Invalid settings length. Should be 26 characters.");
+    }
 
-#include <string>
+    for (size_t i = 0; i < settings.length(); ++i) {
+        char from = 'A' + i;
+        char to = settings[i];
+        forwardMappings[from] = to;
+        reverseMappings[to] = from;
+    }
+}
 
-Rotor::Rotor(std::string mapping) : mapping(mapping), position(0) {}
+void Rotor::setOffset(int newOffset) {
+    offset = newOffset % 26;
+}
 
-void Rotor::setPosition(int pos) {
-    position = pos;
+char Rotor::forward(char input) const {
+    char rotatedInput = 'A' + (input - 'A' + offset) % 26;
+    char mapped = forwardMappings.at(rotatedInput);
+    char rotatedOutput = 'A' + (mapped - 'A' - offset + 26) % 26;
+    return rotatedOutput;
+}
+
+char Rotor::reverse(char input) const {
+    char rotatedInput = 'A' + (input - 'A' + offset) % 26;
+    char mapped = reverseMappings.at(rotatedInput);
+    char rotatedOutput = 'A' + (mapped - 'A' - offset + 26) % 26;
+    return rotatedOutput;
 }
 
 void Rotor::rotate() {
-    position = (position + 1) % 26;
-}
-
-char Rotor::map(char in) {
-    int inPos = in - 'A';
-    inPos = (inPos + position) % 26;
-    char out = mapping[inPos];
-    int outPos = out - 'A';
-    outPos = (outPos - position + 26) % 26;
-    return 'A' + outPos;
+    setOffset(offset + 1);
 }
