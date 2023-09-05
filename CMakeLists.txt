@@ -16,7 +16,7 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 add_library(MyLibrary src/simple_lib.cpp)
 
 
-add_executable(ENIGMA src/main.cpp src/Rotor.cpp src/Reflector.cpp src/Enigma.cpp)
+add_executable(ENIGMA src/main.cpp src/Rotor.cpp src/Reflector.cpp src/Enigma.cpp src/Plugboard.cpp)
 
 target_link_libraries(ENIGMA sfml-graphics sfml-audio)
 
@@ -31,5 +31,8 @@ target_link_libraries(runReflectorTest gtest gtest_main)
 add_executable(runRotorTest test/test_Rotor.cpp src/Rotor.cpp)
 target_link_libraries(runRotorTest gtest gtest_main)
 # Enigma test
-add_executable(runEnigmaTest test/test_Enigma.cpp src/Enigma.cpp src/Rotor.cpp src/Reflector)
+add_executable(runEnigmaTest test/test_Enigma.cpp src/Enigma.cpp src/Rotor.cpp src/Reflector src/Plugboard.cpp)
 target_link_libraries(runEnigmaTest gtest gtest_main)
+# Plugboard test
+add_executable(runPlugboardTest test/test_Plugboard.cpp src/Plugboard.cpp)
+target_link_libraries(runPlugboardTest gtest gtest_main)
