@@ -12,9 +12,10 @@ int main() {
     Rotor rotor1(2);
     rotor1.setOffset(0);
     Reflector reflector("EJMZALYXVBWFCRQUONTSPIKHGD");
+    Plugboard plugboard("");
 
     // Initialize Enigma machine
-    Enigma enigma(rotor1, reflector);
+    Enigma enigma(rotor1, reflector, plugboard);
 
     // Get plaintext
     cout << "Enter plaintext: ";

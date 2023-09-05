@@ -1,13 +1,15 @@
 #include "Enigma.hpp"
 #include <iostream>
 
-Enigma::Enigma(Rotor rotor, Reflector reflector) : rotor(rotor), reflector(reflector) {}
+Enigma::Enigma(Rotor rotor, Reflector reflector, Plugboard plugboard) : rotor(rotor), reflector(reflector), plugboard(plugboard) {}
 
 char Enigma::encrypt(char in) {
     
-    char r = rotor.forward(in);
+    char pl = plugboard.swap(in);
+    char r = rotor.forward(pl);
     char ref = reflector.reflect(r);
-    char out = rotor.reverse(ref);
+    char lp = rotor.reverse(ref);
+    char out = plugboard.swap(lp);
     rotor.rotate();
     return out;
 }
