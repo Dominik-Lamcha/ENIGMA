@@ -2,14 +2,16 @@
 #include "Enigma.hpp"  // Make sure to include the correct path to your Enigma header file.
 #include "Rotor.hpp"   // Include the Rotor header file.
 #include "Reflector.hpp"  // Include the Reflector header file.
+#include "Plugboard.hpp" // Include the Plugboard header file.
 
 TEST(EnigmaTest, BasicEncryption) {
     // Initialize rotor and reflector.
     Rotor rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ");
     Reflector reflector("YRUHQSLDPXNGOKMIEBFZCWVJAT");
+    Plugboard plugboard("");
     
     // Create Enigma machine with the rotor and reflector.
-    Enigma enigma(rotor, reflector);
+    Enigma enigma(rotor, reflector, plugboard);
     
     // Test basic encryption.
     EXPECT_EQ(enigma.encrypt('A'), 'H');
@@ -19,9 +21,10 @@ TEST(EnigmaTest, RotationEffect) {
     // Initialize rotor and reflector.
     Rotor rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ");
     Reflector reflector("YRUHQSLDPXNGOKMIEBFZCWVJAT");
+    Plugboard plugboard("");
     
     // Create Enigma machine with the rotor and reflector.
-    Enigma enigma(rotor, reflector);
+    Enigma enigma(rotor, reflector, plugboard);
     
     // Encrypt a character, causing the rotor to rotate.
     enigma.encrypt('A');
